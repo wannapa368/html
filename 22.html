@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สั่งซื้อของที่ระลึก 30 ปี สาขาวิชาวิทยาการคอมพิวเตอร์</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function toggleProductSelection(checkbox) {
+            const container = checkbox.closest('.product-selector');
+            if (checkbox.checked) {
+                container.classList.add('selected');
+            } else {
+                container.classList.remove('selected');
+            }
+        }
+
+        function selectDelivery(radio) {
+            document.querySelectorAll('.delivery-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            radio.closest('.delivery-option').classList.add('selected');
+        }
+
+        function selectPayment(radio) {
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.classList.remove('selected');
+            });
+            radio.closest('.payment-method').classList.add('selected');
+        }
+    </script>
+    <style>
+        .product-selector.selected {
+            @apply bg-blue-50 border-blue-500 ring-2 ring-blue-200;
+        }
+        .delivery-option.selected {
+            @apply bg-blue-50 border-blue-500 ring-2 ring-blue-200;
+        }
+        .payment-method.selected {
+            @apply bg-blue-50 border-blue-500 ring-2 ring-blue-200;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">🎉 ของที่ระลึก 30 ปี</h1>
+            <h2 class="text-lg text-gray-600 mb-4">สาขาวิชาวิทยาการคอมพิวเตอร์</h2>
+            <div class="inline-block bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium">
+                สั่งซื้อออนไลน์
+            </div>
+        </div>
+
+        <!-- Order Form -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <form action="" method="post" enctype="multipart/form-data">
+                <!-- ข้อมูลลูกค้า -->
+                <div class="p-8 border-b border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
+                        <span>👤</span>
+                        ข้อมูลลูกค้า
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="firstname" class="block text-sm font-medium text-gray-700 mb-2">
+                                ชื่อ <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" name="firstname" id="firstname" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="lastname" class="block text-sm font-medium text-gray-700 mb-2">
+                                นามสกุล <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" name="lastname" id="lastname" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+                                เบอร์โทรศัพท์ <span class="text-red-500">*</span>
+                            </label>
+                            <input type="tel" name="phone" id="phone" placeholder="08X-XXX-XXXX" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">อีเมล</label>
+                            <input type="email" name="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="address" class="block text-sm font-medium text-gray-700 mb-2">
+                            ที่อยู่สำหรับจัดส่ง <span class="text-red-500">*</span>
+                        </label>
+                        <textarea name="address" id="address" rows="3" placeholder="กรุณากรอกที่อยู่ที่ต้องการจัดส่งแบบละเอียด พร้อมรหัสไปรษณีย์" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"></textarea>
+                    </div>
+                </div>
+
+                <!-- เลือกสินค้า -->
+                <div class="p-8 border-b border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
+                        <span>🛍️</span>
+                        เลือกสินค้า
+                    </h3>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
+                        <label class="product-selector bg-gray-50 border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer hover:bg-gray-100 transition-all">
+                            <input type="checkbox" name="products[]" value="tshirt" class="sr-only" onchange="toggleProductSelection(this)">
+                            <span class="text-3xl block mb-2">👕</span>
+                            <div class="font-semibold text-gray-900 text-sm mb-1">เสื้อยืด</div>
+                            <div class="text-xs text-gray-600">350-450 บาท</div>
+                        </label>
+
+                        <label class="product-selector bg-gray-50 border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer hover:bg-gray-100 transition-all">
+                            <input type="checkbox" name="products[]" value="bag" class="sr-only" onchange="toggleProductSelection(this)">
+                            <span class="text-3xl block mb-2">🎒</span>
+                            <div class="font-semibold text-gray-900 text-sm mb-1">กระเป๋า</div>
+                            <div class="text-xs text-gray-600">250-400 บาท</div>
+                        </label>
+
+                        <label class="product-selector bg-gray-50 border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer hover:bg-gray-100 transition-all">
+                            <input type="checkbox" name="products[]" value="cup" class="sr-only" onchange="toggleProductSelection(this)">
+                            <span class="text-3xl block mb-2">🥤</span>
+                            <div class="font-semibold text-gray-900 text-sm mb-1">แก้วน้ำ</div>
+                            <div class="text-xs text-gray-600">150-250 บาท</div>
+                        </label>
+
+                        <label class="product-selector bg-gray-50 border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer hover:bg-gray-100 transition-all">
+                            <input type="checkbox" name="products[]" value="hat" class="sr-only" onchange="toggleProductSelection(this)">
+                            <span class="text-3xl block mb-2">🧢</span>
+                            <div class="font-semibold text-gray-900 text-sm mb-1">หมวก</div>
+                            <div class="text-xs text-gray-600">200-300 บาท</div>
+                        </label>
+
+                        <label class="product-selector bg-gray-50 border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer hover:bg-gray-100 transition-all">
+                            <input type="checkbox" name="products[]" value="umbrella" class="sr-only" onchange="toggleProductSelection(this)">
+                            <span class="text-3xl block mb-2">☂️</span>
+                            <div class="font-semibold text-gray-900 text-sm mb-1">ร่ม</div>
+                            <div class="text-xs text-gray-600">300-450 บาท</div>
+                        </label>
+
+                        <label class="product-selector bg-gray-50 border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer hover:bg-gray-100 transition-all">
+                            <input type="checkbox" name="products[]" value="pin" class="sr-only" onchange="toggleProductSelection(this)">
+                            <span class="text-3xl block mb-2">📌</span>
+                            <div class="font-semibold text-gray-900 text-sm mb-1">เข็มกลัด</div>
+                            <div class="text-xs text-gray-600">50-100 บาท</div>
+                        </label>
+
+                        <label class="product-selector bg-gray-50 border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer hover:bg-gray-100 transition-all">
+                            <input type="checkbox" name="products[]" value="notebook" class="sr-only" onchange="toggleProductSelection(this)">
+                            <span class="text-3xl block mb-2">📓</span>
+                            <div class="font-semibold text-gray-900 text-sm mb-1">สมุด</div>
+                            <div class="text-xs text-gray-600">80-150 บาท</div>
+                        </label>
+
+                        <label class="product-selector bg-gray-50 border-2 border-gray-200 rounded-lg p-4 text-center cursor-pointer hover:bg-gray-100 transition-all">
+                            <input type="checkbox" name="products[]" value="pen" class="sr-only" onchange="toggleProductSelection(this)">
+                            <span class="text-3xl block mb-2">✏️</span>
+                            <div class="font-semibold text-gray-900 text-sm mb-1">ปากกา</div>
+                            <div class="text-xs text-gray-600">30-80 บาท</div>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label for="product_details" class="block text-sm font-medium text-gray-700 mb-2">
+                            รายละเอียดสินค้าที่ต้องการ <span class="text-red-500">*</span>
+                        </label>
+                        <textarea name="product_details" id="product_details" rows="4" placeholder="กรุณาระบุรายละเอียด เช่น สี ขนาด จำนวน ของสินค้าแต่ละรายการที่เลือก" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"></textarea>
+                    </div>
+                </div>
+
+                <!-- การจัดส่งและชำระเงิน -->
+                <div class="p-8 border-b border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
+                        <span>🚚</span>
+                        การจัดส่งและชำระเงิน
+                    </h3>
+
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-3">เลือกการจัดส่ง</label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <label class="delivery-option bg-gray-50 border-2 border-gray-200 rounded-lg p-4 cursor-pointer hover:bg-gray-100 transition-all">
+                                <input type="radio" name="delivery" value="delivery" class="
+Computer Science 30th Anniversary Merchandise Form - Claude
