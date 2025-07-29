@@ -1,0 +1,41 @@
+<body>
+    <div>
+        <h1>แบบฟอร์มรับสมัคร</h1>
+        <form action="submit_form.php" method="post">
+            <label for="name">ชื่อ:</label>
+            <input type="text" name="name" required minlength="10"
+            maxlength="50"><br>
+            
+            <label for="email">อีเมล: stu6704101368@mju.ac.th </label>
+            <input type="email" id="email" name="email"
+            required
+            pattern="stu67[0-9]{8}@mju\.ac\.th"><br>
+
+            Grade: A, B+, B, C+, C, D+, D, F
+            <input type="text" name="grade" required pattern="[A-F][+-]?">
+
+            GPA: 1.75 - 4.00
+            <input type="number" name="gpa" required pattern="^(1\.[7-9]|[2-3]\.\d{2}|4\.0)$">
+
+            เลขคู่
+            <input type="text" name="even_number" required pattern="^[02468]$">
+
+            รหัสผ่าน 8 ตัวขึ้นไป,มีคำว่า thai,ไม่มีอักขระพิเศษ ห้ามเว้นวรรค/ช่องว่าง
+            <input type="password" name="password" required
+            pattern="^(?=.*\bthai\b)[a-zA-Z0-9]{8,}$">
+
+            ทะเบียนรถยนต์ เลข1 เว้นวรรค ตัวอักษร 2 ตัว ตามด้วยเลข 4 หลัก ชื่อจังหวัด
+            <input type="text" name="car_plate" required pattern="^1 [A-Za-z]{2} [0-9]{4} [A-Za-z]+$">
+
+            หมายเลขครุภัณฑ์
+            <input type="text" name="asset_number" required pattern="^[A-Z]{2}-[0-9]{4}$">
+
+            <label for="number">Age:</label>
+            <input type="number" name="Age" min="0" max="120"
+            placeholder="อายุของคุณ" required>
+            <label for="rank">Rank: (1-5)</label>
+            <input type="range" name="rank" min="1" max="5" required>
+
+            <input type="submit" value="ส่งข้อมูล">
+        </form>
+    </div>
